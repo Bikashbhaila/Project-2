@@ -8,7 +8,8 @@
     let x=0; //Random X Position
     let y=0; //Random Y Position
     let MapID=0; //Map ID used to give each pixle a positioning
-
+    let xRan=0;
+    letyRan=0;
 //Generates the Array
     for (i=0;i<400;i++) {
         for (j=0;j<200;j++) {
@@ -23,9 +24,17 @@
         x=Math.floor(Math.random() * 200)+50;
         y=Math.floor(Math.random() * 100)+50;
         map[x][y]=1;
+        let bigIsland=Math.floor(Math.random() * 10000)+5000;
         for (k=bigIsland;k>0;k--){
-            x=Math.floor(Math.random() * 395)+1;
-            y=Math.floor(Math.random() * 195)+1;
+            xRan=Math.floor(Math.random() * 3)-1;
+            yRan=Math.floor(Math.random() * 3)-1;
+
+            x=x+xRan;
+            y=y+yRan;
+            if(x<3){  x=3;} if(x>398){  x=398;}
+            if(y<3){  y=3;} if(y>198){  y=198;}
+
+
                 if(map[x-1][y]==1||map[x+1][y]==1||map[x][y-1]==1||map[x][y+1]==1&&map[x][y]!=1){
                     map[x][y]=1;
                 }
@@ -34,9 +43,10 @@
             }
         }
     }
+    
 
 //Consols the Array for Debuging
-    console.table(map);
+    //console.table(map);
 
 
 //Converts the array into a readable 
