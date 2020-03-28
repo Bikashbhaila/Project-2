@@ -47,8 +47,8 @@ for(o=0;o<=10;o++){
     
 
 for(o=0;o<=10;o++){
-    x=Math.floor(Math.random() * 200)+50;
-    y=Math.floor(Math.random() * 100)+50;
+    x=Math.floor(Math.random() * 399)+1;
+    y=Math.floor(Math.random() * 199)+1;
 
     if(map[x][y]==1){
 
@@ -59,23 +59,23 @@ for(o=0;o<=10;o++){
     }
 }
 
-for(o=0;o<=25;o++){
-    x=Math.floor(Math.random() * 200)+50;
-    y=Math.floor(Math.random() * 100)+50;
+for(o=0;o<=10;o++){
+    x=Math.floor(Math.random() * 399)+1;
+    y=Math.floor(Math.random() * 199)+1;
 
     if(map[x][y]==1){
-        let bigIsland=Math.floor(Math.random() * 50)+50;
+        let bigIsland=Math.floor(Math.random() * 25)+25;
         for (k=bigIsland;k>0;k--){
-             xRan=Math.floor(Math.random() * 3)-1;
-             yRan=Math.floor(Math.random() * 3)-1;
+             xRan=Math.floor(Math.random() * 6)-3;
+             yRan=Math.floor(Math.random() * 6)-3;
 
             x=x+xRan;
             y=y+yRan;
             if(x<3){  x=3;} if(x>398){  x=398;}
             if(y<3){  y=3;} if(y>198){  y=198;}
 
-
-            if(map[x-1][y]==1||map[x+1][y]==1||map[x][y-1]==1||map[x][y+1]==1&&map[x][y]!=1){
+            
+            if(map[x][y]==1){
                 map[x][y]=3;
             }
         
@@ -106,24 +106,36 @@ for (l=0;l<map.length;l++){
         }
         else if(map[l][u]==2){
             $("#map").append(`<div id=${MapID}>`)
-            //$("#map").append(`<div id=${MapID}>`)
+            $("#map").append(`<div id=${MapID}x>`)
+
             $(`#${MapID}`).css({
-                height: '15px',
-                width: '15px',
+                height: '12px',
+                width: '12px',
                 position: 'absolute',
                 top: u*4,
                 left: l*4,
                 
             })
+            $(`#${MapID}x`).css({
+                height: '4px',
+                width: '4px',
+                position: 'absolute',
+                top: u*4,
+                left: l*4,
+            })
+            $(`#${MapID}x`).css("background-color", "forestgreen");
 
+            $(`#${MapID}`).css("border-style", "solid");
+            $(`#${MapID}`).css("border-width", "1px");
+            $(`#${MapID}`).css("border-color", "black");
             
             $(`#${MapID}`).css("z-index", "3");
             $(`#${MapID}`).css("border-radius", "50%");
-            $(`#${MapID}`).css("background-color", "black");
+            $(`#${MapID}`).css("background-color", "darkred");
         }
         else if(map[l][u]==3){
             $("#map").append(`<img src="./mountian.png" id=${MapID}>`)
-            //$("#map").append(`<div id=${MapID}>`)
+            $("#map").append(`<div id=${MapID}x>`)
             $(`#${MapID}`).css({
                 height: '10px',
                 width: '10px',
@@ -132,7 +144,15 @@ for (l=0;l<map.length;l++){
                 left: l*4,
                 
             })
-            
+            $(`#${MapID}x`).css({
+                height: '4px',
+                width: '4px',
+                position: 'absolute',
+                top: u*4,
+                left: l*4,
+                
+            })
+            $(`#${MapID}x`).css("background-color", "forestgreen");
             $(`#${MapID}`).css("z-index", "2");
         }
         MapID++;
