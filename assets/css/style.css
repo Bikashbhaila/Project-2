@@ -21,7 +21,7 @@
 /* iphone 5 and the other superSmalls */
 
 @media screen and (max-width: 410px) {
-.center-align{
+.center{
     text-align: center;
 }    
 
