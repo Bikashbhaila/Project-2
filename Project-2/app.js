@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 4444;
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
