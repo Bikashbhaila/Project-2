@@ -1,6 +1,7 @@
 require("dotenv").config();
 var createError = require('http-errors');
 var express = require('express');
+var port = process.env.PORT || 3000;
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -10,7 +11,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-var PORT = process.env.PORT || 3000;
+
+app.get('/', function (req, res) {
+
+  res.send(JSON.stringify({ Hello: 'World'}));
+});
+app.listen(port, function () {
+ console.log(`Example app listening on port !`);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
