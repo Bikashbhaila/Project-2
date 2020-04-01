@@ -60,3 +60,59 @@ h5 {
     margin-right: auto;
     width: 50%;
 }
+.click {
+    width: 82%;
+    height: 15%;
+    position: relative;
+    left: 0%;
+    top: 0%;
+    border-style: solid;
+    border-color: black;
+    background-color: blanchedalmond;
+    z-index: 10;
+}
+.click1 {
+    width: 20%;
+    position: absolute;
+    left: 100%;
+    
+
+    background-color: blanchedalmond;
+}
+.click2 {
+    width: 25%;
+    position: absolute;
+    left: 25%;
+    
+
+    background-color: blanchedalmond;
+}
+.click3 {
+    width: 25%;
+    position: absolute;
+    left: 50%;
+    
+
+    background-color: blanchedalmond;
+}
+.click4 {
+    width: 25%;
+    position: absolute;
+    left: 75%;
+    
+
+    background-color: blanchedalmond;
+}
+.click5 {
+    width: 25%;
+    position: absolute;
+    left: 0%;
+    
+
+    background-color: blanchedalmond;
+}
+.click6 {
+    position: absolute;
+    left: 108%;
+    
+}

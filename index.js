@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
  
+  let cityData=[];
+  let city=0;
 
 
-
-//Number of Pixles assigned to each Island
-    let bigIsland=15000;
+function start(){
+    
 
 //Initialize variables
     let map=[]; //The X column
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let MapID=0; //Map ID used to give each pixle a positioning
     let xRan=0;
     let yRan=0;
-    let down=0;
+    
 //Generates the Array
     for (i=0;i<400;i++) {
         for (j=0;j<200;j++) {
@@ -57,7 +58,7 @@ for(o=0;o<=10;o++){
     }
 }
     
-
+//City Placer
 for(o=0;o<=10;o++){
     x=Math.floor(Math.random() * 399)+1;
     y=Math.floor(Math.random() * 199)+1;
@@ -65,12 +66,21 @@ for(o=0;o<=10;o++){
     if(map[x][y]==1){
 
         map[x][y]=2;
+
+        let city={
+            population: Math.floor(Math.random() * 100000)+1,
+            name: "Enter City Here", 
+            capital: "false",
+            castle: "true",
+            market: "true"
+        };
+        cityData.push(city);
     }
     else{
         o--;
     }
 }
-
+//Mountian Placer
 for(o=0;o<=10;o++){
     x=Math.floor(Math.random() * 399)+1;
     y=Math.floor(Math.random() * 199)+1;
@@ -100,12 +110,12 @@ for(o=0;o<=10;o++){
 //Consols the Array for Debuging
     //console.table(map);
 
-
+cityNum=0;
 //Converts the array into a readable 
 for (l=0;l<map.length;l++){
     for (u=0;u<200;u++){
         if(map[l][u]==1){
-            $("#map").append(`<div id=${MapID}>`)
+            $("#map").append(`<div id=${MapID} class="grass">`)
             $(`#${MapID}`).css({
                 height: '4px',
                 width: '4px',
@@ -117,7 +127,7 @@ for (l=0;l<map.length;l++){
             $(`#${MapID}`).css("background-color", "forestgreen");
         }
         else if(map[l][u]==2){
-            $("#map").append(`<div id=${MapID}>`)
+            $("#map").append(`<div id=${MapID} class="city city${cityNum}">`)
             $("#map").append(`<div id=${MapID}x>`)
 
             $(`#${MapID}`).css({
@@ -144,9 +154,10 @@ for (l=0;l<map.length;l++){
             $(`#${MapID}`).css("z-index", "3");
             $(`#${MapID}`).css("border-radius", "50%");
             $(`#${MapID}`).css("background-color", "darkred");
+            cityNum++;
         }
         else if(map[l][u]==3){
-            $("#map").append(`<img src="./mountian.png" id=${MapID}>`)
+            $("#map").append(`<img src="./assets/mountian.png" id=${MapID}>`)
             $("#map").append(`<div id=${MapID}x>`)
             $(`#${MapID}`).css({
                 height: '10px',
@@ -170,4 +181,38 @@ for (l=0;l<map.length;l++){
         MapID++;
     }
 }
+cityClick();
+grassClick();
+}
 
+
+function cityClick() {
+    $(".city").click(function(){
+         city=$(this).attr('class')[9]
+        $(".click").empty();
+        $(".click").append(`
+        <div class="click1">Population<input class="val1" type="number" value="${cityData[city].population}"></div>
+        <div class="click2">Is Capital<input class="val2" type="text" value="${cityData[city].capital}"></div>
+        <div class="click3">Has Castle<input class="val3" type="text" value="${cityData[city].castle}"></div>
+        <div class="click4">Has Marketplace<input class="val4" type="text" value="${cityData[city].market}"></div>
+        <div class="click5">City Name<input class="val5" type="text" value="${cityData[city].name}"></div>
+        <input  class="click6" type="button" value="Save">
+    `)
+    $(".click6").click(function(){
+        cityData[city].population=$(".val1").val()
+        cityData[city].name=$(".val5").val()
+        cityData[city].castle=$(".val3").val()
+        cityData[city].market=$(".val4").val()
+        cityData[city].capital=$(".val2").val()
+    });
+});
+}
+function grassClick() {
+    $(".grass").click(function(){
+        $(".click").empty();
+    });
+
+}
+
+    
+start();
