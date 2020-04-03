@@ -13,12 +13,16 @@ function onReady(callback) {
 
 function show(id, value) {
     document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
+}
 
-    onReady(function () {
-    show('map', true);
-    show('loading', false);
-});
+function showMap(){
+     onReady(function () {
+          start();
+         show('map', true);
+         show('loading', false);
+    });
+};
+
 
 // Corner Navigation Buttons
 document.addEventListener('DOMContentLoaded', function() {
@@ -43,9 +47,6 @@ let yRan=0;
 
 //Creates a new Map Array
 function start(){
-    
-
-
     
 //Generates the Array
     for (i=0;i<400;i++) {
@@ -276,4 +277,4 @@ function load(){
     }
 }
     
-start();
+showMap();
