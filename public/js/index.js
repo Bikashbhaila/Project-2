@@ -32,25 +32,27 @@ document.addEventListener('DOMContentLoaded', function() {
   let cityData=[];
   let city=0;
 
+//Initialize variables
+let map=[]; //The X column
+let mapRow=[];  //The Y column
+let x=0; //Random X Position
+let y=0; //Random Y Position
+let MapID=0; //Map ID used to give each pixle a positioning
+let xRan=0;
+let yRan=0;
 
+//Creates a new Map Array
 function start(){
     
 
-//Initialize variables
-    let map=[]; //The X column
-    let mapRow=[];  //The Y column
-    let x=0; //Random X Position
-    let y=0; //Random Y Position
-    let MapID=0; //Map ID used to give each pixle a positioning
-    let xRan=0;
-    let yRan=0;
+
     
 //Generates the Array
     for (i=0;i<400;i++) {
         for (j=0;j<200;j++) {
-        mapRow.push(0);
+        mapRow[j]=0;
         } 
-    map.push(mapRow);
+    map[i]=mapRow;
     mapRow=[];
     } 
 
@@ -80,7 +82,7 @@ for(o=0;o<=10;o++){
 }
     
 //City Placer
-for(o=0;o<=10;o++){
+for(o=0;o<=9;o++){
     x=Math.floor(Math.random() * 399)+1;
     y=Math.floor(Math.random() * 199)+1;
 
@@ -88,7 +90,7 @@ for(o=0;o<=10;o++){
 
         map[x][y]=2;
 
-        let city={
+         city={
             population: Math.floor(Math.random() * 100000)+1,
             name: "Enter City Here", 
             capital: "false",
@@ -131,7 +133,15 @@ for(o=0;o<=10;o++){
 //Consols the Array for Debuging
     //console.table(map);
 
-cityNum=0;
+placeMap();
+cityClick();
+grassClick();
+}
+//Turns the Array into something the user can see
+function placeMap(){
+    $("#map").empty();
+    
+    cityNum=0;
 //Converts the array into a readable 
 for (l=0;l<map.length;l++){
     for (u=0;u<200;u++){
@@ -202,11 +212,8 @@ for (l=0;l<map.length;l++){
         MapID++;
     }
 }
-cityClick();
-grassClick();
 }
-
-
+//Shows Data when the user clicks on a city
 function cityClick() {
     $(".city").click(function(){
          city=$(this).attr('class')[9]
@@ -228,6 +235,7 @@ function cityClick() {
     });
 });
 }
+//Stops showing city data when clicking on the grass
 function grassClick() {
     $(".grass").click(function(){
         $(".click").empty();
@@ -235,5 +243,37 @@ function grassClick() {
 
 }
 
+//Save Map
+
+function save(){
+
+//Send the Following to MYSQL
+
+    //Array Data
+    for (i=0;i<map.length;i++){
+        
+    }
+
+    //City Data
+    for (i=0;i<cityData;i++){
+        
+    }
+}
+
+//Loads Map
+function load(){
+
+//Get the Following from MYSQL
+
+    //Array Data
+    for (i=0;i<400;i++){
+        
+    }
+
+    //City Data
+    for (i=0;i<10;i++){
+        
+    }
+}
     
 start();
