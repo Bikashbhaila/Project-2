@@ -1,14 +1,31 @@
-const mysql = require('mysql2/promise');
+var mysql = require("mysql");
 
-module.exports = (async() => {
-  const pool = await mysql.createPool({
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+  connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Hshriver18!',
+    password: '',
     database: 'maps_db',
     connectionLimit: 5
   });
-  console.log("Connection pool created!");
-  return pool;
-})();
+}
+
+
+
+
+
+// module.exports = (async() => {
+//   const pool = await mysql.createPool({
+//     host: 'localhost',
+//     port: 3306,
+//     user: 'root',
+//     password: 'Hshriver18!',
+//     database: 'maps_db',
+//     connectionLimit: 5
+//   });
+//   console.log("Connection pool created!");
+//   return pool;
+// })();
